@@ -2,14 +2,12 @@ package com.chess;
 
 import javax.swing.*;
 import java.awt.*;
-import java.security.SecureRandom;
 
 /**
  * Klasa odpowiadajaca za GUI menu
  */
 public class ChessMenu {
     private boolean playerVsAI = true;
-    private boolean isPlayerWhite = true;
     private JFrame frame;
     private JPanel mainPanel;
     private CardLayout cardLayout;
@@ -18,6 +16,7 @@ public class ChessMenu {
     private Color lightSquaresColor=null;
     private Color darkSquaresColor=null;
     private GraphicsDevice gd;
+    private boolean playerIsWhite= true;
 
     private static final String ARIAL = "Arial";
     private static final String MAIN_MENU = "Main Menu";
@@ -135,20 +134,20 @@ public class ChessMenu {
 
         settingsPanel.add(Box.createVerticalStrut(20));
 
-        JLabel labelPlayerColor = new JLabel("Kolor gracza:", SwingConstants.CENTER);
-        labelPlayerColor.setFont(new Font(ARIAL, Font.BOLD, 20));
-        labelPlayerColor.setForeground(Color.WHITE);
-        labelPlayerColor.setAlignmentX(Component.CENTER_ALIGNMENT);
-        settingsPanel.add(createCenteredComponent(labelPlayerColor));
+        JLabel labelColor = new JLabel("Wybierz kolor gracza:", SwingConstants.CENTER);
+        labelColor.setFont(new Font(ARIAL, Font.BOLD, 20));
+        labelColor.setForeground(Color.WHITE);
+        labelColor.setAlignmentX(Component.CENTER_ALIGNMENT);
+        settingsPanel.add(createCenteredComponent(labelColor));
 
-        String[] playerColors = {"Biały", "Czarny"};
-        JComboBox<String> playerColorComboBox = new JComboBox<>(playerColors);
-        playerColorComboBox.setFont(new Font(ARIAL, Font.PLAIN, 18));
-        playerColorComboBox.setMaximumSize(new Dimension(200,30));
-        playerColorComboBox.setAlignmentX(Component.CENTER_ALIGNMENT);
-        playerColorComboBox.addActionListener(e->isPlayerWhite = "Biały".equals(playerColorComboBox.getSelectedItem()));
-        playerColorComboBox.setName("playerColorComboBox");
-        settingsPanel.add(createCenteredComponent(playerColorComboBox));
+        String[] colorModes = {"Biały", "Czarny"};
+        JComboBox<String> colorComboBox = new JComboBox<>(colorModes);
+        colorComboBox.setFont(new Font(ARIAL, Font.PLAIN, 18));
+        colorComboBox.setMaximumSize(new Dimension(200,30));
+        colorComboBox.setAlignmentX(Component.CENTER_ALIGNMENT);
+        colorComboBox.addActionListener(e->playerIsWhite= "Biały".equals(colorComboBox.getSelectedItem()));
+        colorComboBox.setName("colorComboBox");
+        settingsPanel.add(createCenteredComponent(colorComboBox));
 
         settingsPanel.add(Box.createVerticalStrut(20));
 
@@ -308,8 +307,7 @@ public class ChessMenu {
     }
 
     private void startGame() {
-        //SecureRandom rand = new SecureRandom();
-        ChessGameGUI gameGUI  = new ChessGameGUI(playerVsAI, mainPanel, cardLayout, lightSquaresColor, darkSquaresColor, isPlayerWhite);
+        ChessGameGUI gameGUI  = new ChessGameGUI(playerVsAI, mainPanel, cardLayout, lightSquaresColor, darkSquaresColor, playerIsWhite);
 
         mainPanel.add(gameGUI.getGamePanel(), "Game");
         cardLayout.show(mainPanel, "Game");
