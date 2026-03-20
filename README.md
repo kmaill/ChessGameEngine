@@ -40,7 +40,7 @@ Upewnij się, że masz zainstalowane **Java 17** oraz **Maven**.
 Sklonuj repozytorium i uruchom projekt korzystając z Mavena:
 ```bash
 # Klonowanie repozytorium
-git clone https://github.com/twojanazwauzytkownika/ChessGameEngine.git
+git clone https://github.com/kmaill/ChessGameEngine.git
 cd ChessGameEngine
 
 # Kompilacja i uruchomienie
@@ -95,7 +95,7 @@ Make sure you have **Java 17** and **Maven** installed on your machine.
 Clone the repository and run the project using Maven:
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/ChessGameEngine.git
+git clone https://github.com/kmaill/ChessGameEngine.git
 cd ChessGameEngine
 
 # Compile and Run
